@@ -135,4 +135,15 @@ ofVec3f ofxSgp::getVelocity()
     return velVec;
 }
     
+//--------------------------
+double ofxSgp::getSatLatitude() { 
+    return ofRadToDeg(sat_geodetic.lat);
+}
 
+double ofxSgp::getSatLongitude() {
+    return ofRadToDeg(sat_geodetic.lon);
+}
+
+double ofxSgp::getSatAlt() {
+    return sat_geodetic.alt;
+}
