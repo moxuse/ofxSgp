@@ -25,6 +25,9 @@ class ofxSgp {
     
         ofVec3f getPos();
     ofVec3f getVelocity();
+    double getSatLatitude();
+    double getSatLongitude();
+    double getSatAlt();
         
     private:
         const char *tle_file;
