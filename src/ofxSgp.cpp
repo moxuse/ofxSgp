@@ -56,10 +56,23 @@ void ofxSgp::setup(const char * tleFilePath)
 }
 
 //--------------------------
-void ofxSgp::update()
+void ofxSgp::update(ofxSATTime const* time)
 {
 
-    UTC_Calendar_Now(&utc);
+    ofxSATTime temp;
+    
+    if (time != NULL) {
+        time_t t;
+        
+        temp = *time;
+        t = temp.asTime_t();
+        utc = *gmtime(&t);
+        utc.tm_year += 1900;
+        utc.tm_mon += 1;
+    }
+    else {
+        UTC_Calendar_Now(&utc);
+    }
     jul_utc = Julian_Date(&utc);
     
     jul_epoch = Julian_Date_of_Epoch(tle.epoch);

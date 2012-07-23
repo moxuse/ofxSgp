@@ -21,7 +21,7 @@ class ofxSgp {
         ~ofxSgp();
     
         void setup(const char * tleFilePath);
-        void update();
+        void update(ofxSATTime const* time);
     
         ofVec3f getPos();
     ofVec3f getVelocity();
