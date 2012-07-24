@@ -31,13 +31,13 @@ class ofxSgp {
         
     private:
         const char *tle_file;
-        geodetic_t obs_geodetic  = {0.6056, 0.5761, 0.15, 0.0};
-        tle_t tle ;
-        vector_t zero_vector = {0,0,0,0};
-        vector_t vel = zero_vector;
-        vector_t pos = zero_vector;
+        geodetic_t obs_geodetic;
+        tle_t tle;
+        vector_t zero_vector;
+        vector_t vel;
+        vector_t pos;
         vector_t obs_set;
-        vector_t solar_vector = zero_vector;
+        vector_t solar_vector;
         vector_t solar_set;
         struct tm utc;
         geodetic_t sat_geodetic;

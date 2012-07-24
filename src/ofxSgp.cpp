@@ -15,7 +15,18 @@
 //--------------------------
 ofxSgp::ofxSgp()
 {
-       
+    obs_geodetic.lat = 0.6056;
+    obs_geodetic.lon = 0.5761;
+    obs_geodetic.alt = 0.15;
+    obs_geodetic.theta = 0.0;
+    zero_vector.x = 0;
+    zero_vector.y = 0;
+    zero_vector.z = 0;
+    zero_vector.w = 0;
+    vel = zero_vector;
+    pos = zero_vector;
+    solar_vector = zero_vector;
+    eclipse_depth = 0;
 }
 
 //--------------------------
@@ -58,7 +69,6 @@ void ofxSgp::setup(const char * tleFilePath)
 //--------------------------
 void ofxSgp::update(ofxSATTime const* time)
 {
-
     ofxSATTime temp;
     
     if (time != NULL) {
@@ -78,30 +88,23 @@ void ofxSgp::update(ofxSATTime const* time)
     jul_epoch = Julian_Date_of_Epoch(tle.epoch);
     tsince = (jul_utc - jul_epoch) * xmnpda;
     
-
     if( isFlagSet(DEEP_SPACE_EPHEM_FLAG) )
         strcpy(ephem,"SDP4");
     else
         strcpy(ephem,"SGP4");
     
-
     if( isFlagSet(DEEP_SPACE_EPHEM_FLAG) )
         SDP4(tsince, &tle, &pos, &vel);
     else
         SGP4(tsince, &tle, &pos, &vel);
     
-
     Convert_Sat_State( &pos, &vel );
     
-
     Magnitude( &vel );
     sat_vel = vel.w;
     
-
     Calculate_Obs(jul_utc, &pos, &vel, &obs_geodetic, &obs_set);
-    
     Calculate_LatLonAlt(jul_utc, &pos, &sat_geodetic);
-    
     
     Calculate_Solar_Position(jul_utc, &solar_vector);
     Calculate_Obs(jul_utc,&solar_vector,&zero_vector,&obs_geodetic,&solar_set);
@@ -127,7 +130,7 @@ void ofxSgp::update(ofxSATTime const* time)
     
     sun_azi = Degrees(solar_set.x);
     sun_ele = Degrees(solar_set.y);
-
+    
 }
 
 //--------------------------
