@@ -14,24 +14,26 @@
 class mNode : public ofNode {
 	
 public:
-	
-	int mID;
-	
-	ofQuaternion mOrientation;
-	
-	void customDraw() {
-        
+
+    int mID;
+
+    ofQuaternion mOrientation;
+
+    void customDraw() {
+
         ofSetColor(255,255,255);
-		glPushMatrix();
-		glScalef(10, 10, 10);
-        if(mID == 0){
+        glPushMatrix();
+        glScalef(10, 10, 10);
+        
+        if ( mID == 0 ) {
             ofNoFill();
             ofSphere(0, 0, 0, 635.6752);
-        }else{
+        } else {
             ofSphere(0, 0, 0, 10);
         }
-		glPopMatrix();		
-	}
-    
+        
+        glPopMatrix();
+    }
+
 };
 
